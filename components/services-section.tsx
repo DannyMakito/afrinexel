@@ -21,9 +21,9 @@ const services = [
   },
   {
     icon: Cloud,
-    title: "Cloud Solutions",
+    title: "Business Process Automation",
     description:
-      "Scalable cloud infrastructure and migration services to optimize your business operations and reduce costs.",
+      "Automate your business processes to improve efficiency and reduce costs.",
   },
   {
     icon: Palette,

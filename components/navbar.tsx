@@ -32,7 +32,11 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <motion.div whileHover={{ scale: 1.05 }} className="flex items-center space-x-2">
+          <motion.div 
+            whileHover={{ scale: 1.05 }} 
+            className="flex items-center space-x-2 cursor-pointer"
+            onClick={() => { window.location.href = '/'; }}
+          >
             <Image
               src="/images/afrinexelbg.svg1.png"
               alt="Afrinexel Logo"
@@ -45,18 +49,32 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <motion.a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                whileHover={{ scale: 1.05 }}
-                className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
-              >
-                {item}
-              </motion.a>
-            ))}
-            <Button className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-medium px-6">
-              Get a Quote
+            {navItems.map((item) => {
+              if (item === "About") {
+                return (
+                  <motion.a
+                    key={item}
+                    href="/about"
+                    whileHover={{ scale: 1.05 }}
+                    className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
+                  >
+                    {item}
+                  </motion.a>
+                );
+              }
+              return (
+                <motion.a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  whileHover={{ scale: 1.05 }}
+                  className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
+                >
+                  {item}
+                </motion.a>
+              );
+            })}
+            <Button className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-medium px-6" onClick={() => { window.location.href = '/about'; }}>
+              lets build together
             </Button>
           </div>
 
@@ -76,17 +94,31 @@ export default function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-background/95 backdrop-blur-md rounded-lg mt-2 p-4 shadow-lg"
           >
-            {navItems.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="block py-2 text-foreground hover:text-primary transition-colors duration-200"
-                onClick={() => setIsOpen(false)}
-              >
-                {item}
-              </a>
-            ))}
-            <Button className="w-full mt-4 bg-gradient-to-r from-primary to-secondary text-white">Get a Quote</Button>
+            {navItems.map((item) => {
+              if (item === "About") {
+                return (
+                  <a
+                    key={item}
+                    href="/about"
+                    className="block py-2 text-foreground hover:text-primary transition-colors duration-200"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item}
+                  </a>
+                );
+              }
+              return (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  className="block py-2 text-foreground hover:text-primary transition-colors duration-200"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item}
+                </a>
+              );
+            })}
+            <Button className="w-full mt-4 bg-gradient-to-r from-primary to-secondary text-white">lets build together</Button>
           </motion.div>
         )}
       </div>

@@ -23,7 +23,7 @@ const projects = [
       "A full-featured employee management platform powered by Appwrite for backend services and React for an intuitive user interface..",
     category: "Mobile",
     image: "/healthcare-mobile-app.png",
-    slug: "ems.png",
+    slug: "employee-management-system",
   },
   {
     title: "Cloud Infrastructure",
@@ -125,7 +125,8 @@ export default function PortfolioSection() {
                     className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-                    <Link href={`/case-study/${project.slug}`}>
+                  <Link href={`/case-study/${project.slug}`}>
+
                       <Button size="sm" className="bg-primary hover:bg-primary/90 text-white">
                         <ExternalLink className="h-4 w-4 mr-2" />
                         View Case Study

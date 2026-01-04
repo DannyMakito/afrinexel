@@ -55,6 +55,7 @@ export default function AboutSection() {
             variant="outline"
             size="lg"
             className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 text-lg bg-transparent"
+            onClick={() => { window.location.href = '/about'; }}
           >
             learn more 
           </Button>

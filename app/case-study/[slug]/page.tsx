@@ -223,12 +223,17 @@ const caseStudies = {
   },
 }
 
-export default function CaseStudyPage({ params }: { params: { slug: string } }) {
-  const caseStudy = caseStudies[params.slug as keyof typeof caseStudies]
+export default async function CaseStudyPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
 
-  if (!caseStudy) {
-    notFound()
-  }
+  const caseStudy = caseStudies[slug as keyof typeof caseStudies]
+
+  if (!caseStudy) notFound()
+
 
   return (
     <div className="min-h-screen bg-background">
