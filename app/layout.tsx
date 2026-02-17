@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Inter, Poppins } from "next/font/google"
 import { Suspense } from "react"
 import "./globals.css"
+import WhatsAppWidget from "@/components/whatsapp-widget"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -24,6 +25,7 @@ export const metadata: Metadata = {
   generator: "v0.app",
 }
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -33,6 +35,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className={`font-sans ${inter.variable} ${poppins.variable} antialiased`}>
         <Suspense fallback={null}>{children}</Suspense>
+        <WhatsAppWidget />
       </body>
     </html>
   )
