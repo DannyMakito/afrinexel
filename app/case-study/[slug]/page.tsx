@@ -77,13 +77,13 @@ const caseStudies = {
       position: "HR Director, TechCorp Solutions",
     },
   },
-  "cloud-infrastructure": {
-    title: "Cloud Infrastructure Modernization",
-    category: "Cloud Solutions",
+  "re": {
+    title: "Cartenatex Website",
+    category: "web",
     client: "Global Finance Corp",
     duration: "6 months",
     team: "8 engineers, 2 architects, 1 PM",
-    image: "/cloud-infrastructure-dashboard.png",
+    image: "/re.png",
     overview:
       "A complete cloud transformation project migrating legacy on-premise infrastructure to a modern microservices architecture on AWS. The solution provides auto-scaling, high availability, and disaster recovery capabilities.",
     challenge:

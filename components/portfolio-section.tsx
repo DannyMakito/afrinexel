@@ -26,11 +26,11 @@ const projects = [
     slug: "employee-management-system",
   },
   {
-    title: "Cloud Infrastructure",
-    description: "Scalable microservices architecture deployed on AWS with automated CI/CD pipelines.",
-    category: "Cloud",
-    image: "/cloud-infrastructure-dashboard.png",
-    slug: "cloud-infrastructure",
+    title: "Cartenetex Website",
+    description: "Cartenetex your trusted destination for expert car repair and maintenance.We combine skilled craftsmanship with modern diagnostic technology to keep your vehicle running at its best",
+    category: "web",
+    image: "/re.png",
+    slug: "re",
   },
   {
     title: "AI Analytics Dashboard",

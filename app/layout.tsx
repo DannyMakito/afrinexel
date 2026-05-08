@@ -19,10 +19,14 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "Afrinexel- Building Digital Solutions That Drive Growth",
+  metadataBase: new URL("https://www.afrinexel.co.za"),
+  title: "Afrinexel - Building Digital Solutions That Drive Growth",
   description:
     "Professional software development company specializing in full-stack development, cloud solutions, and AI-powered applications.",
   generator: "v0.app",
+  alternates: {
+    canonical: "/",
+  },
 }
 
 
