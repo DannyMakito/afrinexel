@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import { Inter, Poppins } from "next/font/google"
 import { Suspense } from "react"
 import "./globals.css"
-import WhatsAppWidget from "@/components/whatsapp-widget"
+import Navbar from "@/components/navbar"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,9 +20,9 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.afrinexel.co.za"),
-  title: "Afrinexel - Building Digital Solutions That Drive Growth",
+  title: "Afrinexel - Web Development, Software Development & Digital Marketing",
   description:
-    "Professional software development company specializing in full-stack development, cloud solutions, and AI-powered applications.",
+    "Afrinexel builds conversion-focused websites, custom software, brand design, email marketing campaigns, automation, and digital growth systems for startups and established businesses.",
   generator: "v0.app",
   alternates: {
     canonical: "/",
@@ -38,8 +38,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`font-sans ${inter.variable} ${poppins.variable} antialiased`}>
+        <Navbar />
         <Suspense fallback={null}>{children}</Suspense>
-        <WhatsAppWidget />
       </body>
     </html>
   )

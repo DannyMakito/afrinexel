@@ -1,14 +1,11 @@
 "use client";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import Navbar from "@/components/navbar";
 import ProcessCycle from "@/components/ProcessCycle";
 import ContactSection from "@/components/contact-section";
 
 export default function AboutPage() {
   return (
     <div className="bg-background text-foreground min-h-screen">
-      <Navbar />
       {/* Hero/Top Section */}
       <section className="w-full pt-32 pb-20 px-4 max-w-6xl mx-auto relative text-center">
         <h1 className="text-3xl md:text-5xl font-bold font-poppins mb-4">
