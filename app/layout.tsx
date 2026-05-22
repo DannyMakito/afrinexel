@@ -27,6 +27,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  icons: {
+    icon: [{ url: "/images/afrinexel-logo.jpeg", type: "image/jpeg", sizes: "any" }],
+    shortcut: "/images/afrinexel-logo.jpeg",
+    apple: "/images/afrinexel-logo.jpeg",
+  },
 }
 
 
