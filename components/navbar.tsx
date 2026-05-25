@@ -32,7 +32,7 @@ export default function Navbar() {
     return null
   }
 
-  const contactHref = isHome ? "#contact" : "/#contact"
+  const contactHref = "/contact"
 
   return (
     <>

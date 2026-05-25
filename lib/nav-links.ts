@@ -5,13 +5,15 @@ export type NavLinkItem = {
 
 export const primaryNavLinks: NavLinkItem[] = [
   { label: "Home", href: "/" },
+  { label: "Our Work", href: "/work" },
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Contact", href: "/contact" },
 ]
 
 export const heroNavLinks: NavLinkItem[] = [
+  { label: "Our Work", href: "/work" },
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "/contact" },
 ]

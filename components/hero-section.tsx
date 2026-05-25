@@ -189,7 +189,7 @@ export default function HeroSection() {
               ))}
             </div>
             <div className="tl-cta">
-              <a href="#contact" data-split>
+              <a href="/contact" data-split>
                 Let&apos;s build
               </a>
             </div>
@@ -229,7 +229,7 @@ export default function HeroSection() {
         open={menuOpen}
         onOpenChange={setMenuOpen}
         links={heroNavLinks}
-        contactHref="#contact"
+        contactHref="/contact"
       />
     </>
   )

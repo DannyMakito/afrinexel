@@ -16,6 +16,8 @@
     "@radix-ui/react-avatar": "^1.1.11",
     "@radix-ui/react-slot": "^1.2.4",
     "@radix-ui/react-toast": "^1.2.15",
+    "@react-email/components": "^1.0.12",
+    "@react-email/render": "^2.0.8",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "gsap": "^3.15.0",
@@ -26,6 +28,7 @@
     "radix": "^0.0.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "resend": "^6.12.3",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {

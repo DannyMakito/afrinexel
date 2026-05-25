@@ -49,7 +49,7 @@ export function CurvyMobileMenu({
   open,
   onOpenChange,
   links,
-  contactHref = "/#contact",
+  contactHref = "/contact",
   contactLabel = "Start a project",
   className = "",
   alwaysVisible = false,
