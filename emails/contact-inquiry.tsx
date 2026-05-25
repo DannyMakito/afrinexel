@@ -26,24 +26,38 @@ export default function ContactInquiryEmail({
   return (
     <Html>
       <Head />
-      <Preview>New project inquiry from {name}</Preview>
+      <Preview>
+        {name} submitted the Afrinexel contact form — reply to schedule a discovery call.
+      </Preview>
       <Body style={main}>
         <Container style={container}>
-          <Heading style={heading}>New contact form submission</Heading>
+          <Heading style={heading}>New message from your website</Heading>
           <Text style={paragraph}>
-            Someone reached out through the Afrinexel website contact form.
+            {name} filled out the contact form on afrinexel.co.za. Reply to this email to
+            reach them directly.
           </Text>
           <Hr style={hr} />
           <Section>
             <Text style={label}>Name</Text>
             <Text style={value}>{name}</Text>
             <Text style={label}>Email</Text>
-            <Text style={value}>{email}</Text>
+            <Text style={value}>
+              <a href={`mailto:${email}`} style={link}>
+                {email}
+              </a>
+            </Text>
             <Text style={label}>Phone</Text>
             <Text style={value}>{phone}</Text>
             <Text style={label}>Project description</Text>
             <Text style={value}>{description}</Text>
           </Section>
+          <Hr style={hr} />
+          <Text style={footer}>
+            Afrinexel · Johannesburg, South Africa ·{" "}
+            <a href="https://www.afrinexel.co.za" style={link}>
+              afrinexel.co.za
+            </a>
+          </Text>
         </Container>
       </Body>
     </Html>
@@ -96,4 +110,16 @@ const value = {
 const hr = {
   borderColor: "#dbeaf3",
   margin: "24px 0",
+}
+
+const link = {
+  color: "#0a9cab",
+  textDecoration: "underline",
+}
+
+const footer = {
+  color: "#5c6b7a",
+  fontSize: "12px",
+  lineHeight: "20px",
+  margin: "0",
 }

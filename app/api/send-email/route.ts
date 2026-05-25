@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server"
 import { sendContactEmail } from "@/lib/send-contact-email"
 
-/** @deprecated Use /api/send-email — kept for backwards compatibility */
 export async function POST(request: Request) {
   try {
     const body = await request.json()
@@ -12,7 +11,18 @@ export async function POST(request: Request) {
       typeof body.description === "string" ? body.description.trim() : ""
 
     if (!name || !email || !description) {
-      return NextResponse.json({ error: "All fields are required." }, { status: 400 })
+      return NextResponse.json(
+        { error: "Name, email, and project description are required." },
+        { status: 400 },
+      )
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailPattern.test(email)) {
+      return NextResponse.json(
+        { error: "Please enter a valid email address." },
+        { status: 400 },
+      )
     }
 
     const result = await sendContactEmail({
@@ -28,7 +38,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true })
   } catch (err) {
-    console.error("contact API error:", err)
+    console.error("send-email error:", err)
     return NextResponse.json(
       { error: "Something went wrong. Please try again." },
       { status: 500 },
