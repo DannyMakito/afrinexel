@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { X } from "lucide-react"
@@ -11,11 +11,52 @@ const fieldLabelClass =
 const fieldInputClass =
   "h-12 w-full rounded-full border border-[#1a2e1a]/80 bg-transparent px-5 text-sm text-[#1a2e1a] placeholder:text-[#1a2e1a]/35 outline-none transition-shadow focus:ring-2 focus:ring-[#1a2e1a]/15"
 
-export default function ContactModal() {
+type ContactModalProps = {
+  variant?: "page" | "overlay"
+  open?: boolean
+  onClose?: () => void
+}
+
+export default function ContactModal({
+  variant = "page",
+  open = true,
+  onClose,
+}: ContactModalProps) {
   const form = useRef<HTMLFormElement>(null)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [errorMessage, setErrorMessage] = useState("")
+  const isOverlay = variant === "overlay"
+
+  useEffect(() => {
+    if (!isOverlay || !open) return
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [isOverlay, open])
+
+  useEffect(() => {
+    if (!isOverlay || !open || !onClose) return
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose()
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [isOverlay, open, onClose])
+
+  useEffect(() => {
+    if (!isOverlay || open) return
+
+    setIsSubmitted(false)
+    setErrorMessage("")
+    form.current?.reset()
+  }, [isOverlay, open])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -53,8 +94,31 @@ export default function ContactModal() {
     }
   }
 
+  if (isOverlay && !open) return null
+
+  const closeButtonClass =
+    "fixed top-6 right-6 z-[110] flex h-11 w-11 items-center justify-center rounded-full border border-white/40 bg-white/5 text-white backdrop-blur-sm transition hover:bg-white/15"
+
+  const successCloseClass =
+    "mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-[#1a2e1a] px-8 text-sm font-semibold text-[#fdfdf5] transition hover:bg-[#0f2847]"
+
   return (
-    <div className="relative flex min-h-screen items-center justify-center px-4 py-24 sm:px-6">
+    <div
+      className={
+        isOverlay
+          ? "fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto px-4 py-24 sm:px-6"
+          : "relative flex min-h-screen items-center justify-center px-4 py-24 sm:px-6"
+      }
+    >
+      {isOverlay && onClose && (
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute inset-0 bg-[#061f2b]/60 backdrop-blur-sm"
+          aria-label="Close contact form"
+        />
+      )}
+
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
         <Image
           src="/images/contact-hero.png"
@@ -62,20 +126,22 @@ export default function ContactModal() {
           fill
           className="scale-110 object-cover object-center opacity-60 blur-2xl"
           sizes="100vw"
-          priority
+          priority={!isOverlay}
         />
         <div className="absolute inset-0 bg-[#061f2b]/75 backdrop-blur-md" />
         <div className="absolute top-1/4 left-1/4 h-80 w-80 rounded-full bg-[#0a9cab]/20 blur-3xl" />
         <div className="absolute right-1/4 bottom-1/4 h-80 w-80 rounded-full bg-[#c96442]/15 blur-3xl" />
       </div>
 
-      <Link
-        href="/"
-        className="fixed top-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-white/40 bg-white/5 text-white backdrop-blur-sm transition hover:bg-white/15"
-        aria-label="Close and return home"
-      >
-        <X className="h-5 w-5" strokeWidth={1.5} />
-      </Link>
+      {isOverlay && onClose ? (
+        <button type="button" onClick={onClose} className={closeButtonClass} aria-label="Close contact form">
+          <X className="h-5 w-5" strokeWidth={1.5} />
+        </button>
+      ) : (
+        <Link href="/" className={closeButtonClass} aria-label="Close and return home">
+          <X className="h-5 w-5" strokeWidth={1.5} />
+        </Link>
+      )}
 
       <div
         role="dialog"
@@ -120,12 +186,15 @@ export default function ContactModal() {
               Your request has been received. Our team will reach out to the email provided to
               schedule your discovery call.
             </p>
-            <Link
-              href="/"
-              className="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-[#1a2e1a] px-8 text-sm font-semibold text-[#fdfdf5] transition hover:bg-[#0f2847]"
-            >
-              Close
-            </Link>
+            {isOverlay && onClose ? (
+              <button type="button" onClick={onClose} className={successCloseClass}>
+                Close
+              </button>
+            ) : (
+              <Link href="/" className={successCloseClass}>
+                Close
+              </Link>
+            )}
           </div>
         ) : (
           <form ref={form} onSubmit={handleSubmit}>

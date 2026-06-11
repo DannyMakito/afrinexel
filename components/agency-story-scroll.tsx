@@ -1,6 +1,7 @@
 "use client"
 
 import { ArrowRight } from "lucide-react"
+import { useContactModal } from "@/components/contact/contact-modal-context"
 import FlowArt, { FlowSection } from "@/components/ui/story-scroll"
 
 const capabilityRows = [
@@ -97,6 +98,8 @@ function FeatureGrid({
 }
 
 export default function AgencyStoryScroll() {
+  const { openContactModal } = useContactModal()
+
   return (
     <FlowArt aria-label="Afrinexel digital growth story" className="font-poppins">
       <FlowSection
@@ -245,13 +248,14 @@ export default function AgencyStoryScroll() {
             Tell us what is slowing the business down. We will help you shape the right website, software,
             design, automation, or marketing system to move it forward.
           </p>
-          <a
-            href="mailto:info@afrinexel.co.za?subject=Start%20a%20digital%20growth%20project"
+          <button
+            type="button"
+            onClick={openContactModal}
             className="inline-flex w-fit items-center gap-3 rounded-full bg-white px-6 py-4 text-sm font-bold uppercase tracking-wider text-[#0f2847] transition hover:bg-[#dbeaf3]"
           >
             Start a project
             <ArrowRight className="h-5 w-5" />
-          </a>
+          </button>
         </div>
       </FlowSection>
     </FlowArt>

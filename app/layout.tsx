@@ -4,6 +4,7 @@ import { Inter, Poppins } from "next/font/google"
 import { Suspense } from "react"
 import "./globals.css"
 import Navbar from "@/components/navbar"
+import { ContactModalProvider } from "@/components/contact/contact-modal-context"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -43,8 +44,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`font-sans ${inter.variable} ${poppins.variable} antialiased`}>
-        <Navbar />
-        <Suspense fallback={null}>{children}</Suspense>
+        <ContactModalProvider>
+          <Navbar />
+          <Suspense fallback={null}>{children}</Suspense>
+        </ContactModalProvider>
       </body>
     </html>
   )
